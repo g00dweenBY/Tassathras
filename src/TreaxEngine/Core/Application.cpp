@@ -2,7 +2,7 @@
 
 #include"Application.h"
 
-namespace TreaxEngine
+namespace Tassathras
 {
 	Application::Application() : m_window(nullptr), m_running(false) {}
 

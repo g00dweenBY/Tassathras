@@ -6,7 +6,7 @@
 
 
 
-namespace TreaxEngine
+namespace Tassathras
 {
 	class Window
 	{

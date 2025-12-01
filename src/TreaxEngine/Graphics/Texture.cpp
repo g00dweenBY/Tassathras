@@ -3,7 +3,7 @@
 #include "Texture.h"
 #include<stb_image.h>
 
-namespace TreaxEngine
+namespace Tassathras
 {
 	Texture::Texture(const std::string& path) : m_ID(0), m_Width(0), m_Height(0), m_Channels(0)
 	{

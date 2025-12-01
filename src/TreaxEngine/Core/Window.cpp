@@ -1,7 +1,7 @@
 #include<iostream>
 #include "Window.h"
 
-namespace TreaxEngine
+namespace Tassathras
 {
 	Window::Window(const char* title, int width, int height)
 	{

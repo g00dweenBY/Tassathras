@@ -27,8 +27,8 @@ bool mouseInside(const Draggable& q, const glm::vec2 mouse)
 int main()
 {
 
-	TreaxEngine::Window window("Test Renderer", 1280, 720);
-	TreaxEngine::Renderer2D::init();
+	Tassathras::Window window("Test Renderer", 1280, 720);
+	Tassathras::Renderer2D::init();
 
 	glm::mat4 projection = glm::ortho(0.0f, 1280.0f, 0.0f, 720.0f);
 	
@@ -91,14 +91,14 @@ int main()
 		window.pollEvents();
 		window.clear();
 
-		TreaxEngine::Renderer2D::beginScene(projection);
-		TreaxEngine::Renderer2D::drawQuad(
+		Tassathras::Renderer2D::beginScene(projection);
+		Tassathras::Renderer2D::drawQuad(
 			{  drag.position },		//pos
 			{  drag.size },					//size
 			{  0 },				//rotate
 			{  1.0f, 0.0f, 0.0f, 1.0f } //color
 		);
-		TreaxEngine::Renderer2D::endScene();
+		Tassathras::Renderer2D::endScene();
 
 		window.display();
 	}

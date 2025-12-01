@@ -3,7 +3,7 @@
 #include <sstream>
 #include "Shader.h"
 
-namespace TreaxEngine
+namespace Tassathras
 {
 	Shader::Shader(const std::string& vertexPath, const std::string& fragmentPath)
 	{

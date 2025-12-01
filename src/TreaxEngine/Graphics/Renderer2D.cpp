@@ -3,7 +3,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <iostream>
 
-namespace TreaxEngine
+namespace Tassathras
 {
 	unsigned int Renderer2D::s_VAO = 0;
 	unsigned int Renderer2D::s_VBO = 0;

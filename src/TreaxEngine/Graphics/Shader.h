@@ -4,7 +4,7 @@
 #include <glm/glm.hpp>
 
 
-namespace TreaxEngine
+namespace Tassathras
 {
 	class Shader
 	{

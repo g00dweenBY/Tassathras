@@ -3,7 +3,7 @@
 #include "Window.h"
 #include <functional>
 
-namespace TreaxEngine
+namespace Tassathras
 {
 	class Application
 	{

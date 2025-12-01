@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 
-namespace TreaxEngine
+namespace Tassathras
 {
 	class Texture
 	{
