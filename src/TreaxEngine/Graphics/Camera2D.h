@@ -6,7 +6,7 @@ namespace Tassathras
 {
 private:
 	//  basic parameters
-	glm::vec3 m_Position; // x, y, z
+	glm::vec3 m_Position; // x, y, z ==
 	float m_Zoom = 1.0f;
 	float m_Rotation = 0.0f;
 
