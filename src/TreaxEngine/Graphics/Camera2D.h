@@ -8,22 +8,22 @@ namespace Tassathras
 	{
 	private:
 		//  basic parameters
-		glm::vec3 m_Position; // x, y, z ==
-		float m_Zoom = 1.0f;
-		float m_Rotation = 0.0f;
+		glm::vec3 m_position; // x, y, z ==
+		float m_zoom = 1.0f;
+		float m_rotation = 0.0f;
 
 		// matrix
-		glm::mat4 m_ViewMatrix;
-		glm::mat4 m_ProjectionMatrix;
-		glm::mat4 m_ViewProjectionMatrix;
+		glm::mat4 m_viewMatrix;
+		glm::mat4 m_projectionMatrix;
+		glm::mat4 m_viewProjectionMatrix;
 
 		//window parameters
-		float m_ViewportWidth;
-		float m_ViewportHeight;
+		float m_viewportWidth;
+		float m_viewportHeight;
 
 		//isometric parameters
-		float m_TileWidth = 64.0f;
-		float m_TileHeight = 32.0f; // m_tilewidth / 2
+		float m_tileWidth = 64.0f;
+		float m_tileHeight = 32.0f; // m_tilewidth / 2
 
 	public:
 		Camera(float viewportWidth, float viewportHeight);
@@ -47,16 +47,16 @@ namespace Tassathras
 
 
 		// == get == 
-		float getTileWidth() const { return m_TileWidth; }
-		float getTileHeight() const { return m_TileHeight; }
+		float getTileWidth() const { return m_tileWidth; }
+		float getTileHeight() const { return m_tileHeight; }
 
-		const glm::vec3& getPosition() const { return m_Position; }
-		float getZoom() const { return m_Zoom; }
-		float getRotation() const { return m_Rotation; }
+		const glm::vec3& getPosition() const { return m_position; }
+		float getZoom() const { return m_zoom; }
+		float getRotation() const { return m_rotation; }
 
-		const glm::mat4& getViewMatrix() const { return m_ViewMatrix; }
-		const glm::mat4 getProjectionMatrix() const { return m_ProjectionMatrix; }
-		const glm::mat4 getViewProjectionMatrix() const { return m_ViewProjectionMatrix; }
+		const glm::mat4& getViewMatrix() const { return m_viewMatrix; }
+		const glm::mat4 getProjectionMatrix() const { return m_projectionMatrix; }
+		const glm::mat4 getViewProjectionMatrix() const { return m_viewProjectionMatrix; }
 
 	private:
 		void recalculateViewMatrix();
