@@ -1,22 +1,33 @@
 #pragma once
-
-#include "Window.h"
-#include <functional>
+#include<GLFW/glfw3.h>
+#include<memory>
 
 namespace Tassathras
 {
 	class Application
 	{
+	private:
+		void init();
+		void shotDown();
+	private:
+		GLFWwindow* m_window = nullptr;
+		int m_width = 1280;
+		int m_height = 720;
+		const char* m_title = "Tassathras engine";
+		bool m_running = true;
+		float m_lastFrameTime = 0.0f;
+
 	public:
 		Application();
-		~Application();
+		virtual ~Application();
 
-		void createWindow(const char* title, int width, int height);
-		void run(const std::function<void()>& updateFunc);
+		void run();
 
-	private:
+		virtual void onUpdate(float deltaTime) {}
+		virtual void onRender() {}
+		virtual void onImGuiRender() {}
+		virtual void onEvent() {}
 
-		Window* m_window;
-		bool m_running;
+		GLFWwindow* getWindow() const { return m_window; };
 	};
 }

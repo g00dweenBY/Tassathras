@@ -11,7 +11,7 @@ file(GLOB_RECURSE ENGINE_SOURCES
     src/TreaxEngine/**/*.cpp
     src/TreaxEngine/Graphics/stb_image.cpp
 )
-add_library(TreaxEngine STATIC ${ENGINE_SOURCES})
+add_library(TreaxEngine STATIC ${ENGINE_SOURCES} "src/TreaxEngine/Core/Scene.h" "src/TreaxEngine/Core/Scene.cpp")
 
 # Game sources
 file(GLOB_RECURSE GAME_SOURCES
@@ -23,7 +23,7 @@ file(GLOB_RECURSE GAME_SOURCES
 add_subdirectory(external/glfw)
 
 # Glad
-add_library(glad STATIC external/glad/src/glad.c)
+add_library(glad STATIC external/glad/src/glad.c "src/TreaxEngine/Core/Scene.h" "src/TreaxEngine/Core/Scene.cpp")
 target_include_directories(glad PUBLIC external/glad/include)
 
 # Include dirs
@@ -36,7 +36,7 @@ target_include_directories(TreaxEngine PUBLIC
 )
 
 # Executable
-add_executable(TreaxGame ${GAME_SOURCES})
+add_executable(TreaxGame ${GAME_SOURCES} "src/TreaxEngine/Core/Scene.h" "src/TreaxEngine/Core/Scene.cpp")
 
 # Link libraries
 target_link_libraries(TreaxGame PRIVATE TreaxEngine glfw glad opengl32)
