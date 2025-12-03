@@ -40,15 +40,18 @@ namespace Tassathras
 
 		//3. Settings attributes
 		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, position));
+
+		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, color));
 
 		//4. Create index buffer
 		std::vector<uint32_t> indices;
-		indices.reserve(MAX_INDICES);
+		indices.resize(MAX_INDICES);
 
-		for (uint32_t i = 0; i < MAX_INDICES; i += 6)
+		for (uint32_t i = 0, offset = 0; i < MAX_INDICES; i += 6, offset += 4)
 		{
-			uint32_t offset = i * 4;
+			
 			//first triangle
 			indices[i + 0] = offset + 0;
 			indices[i + 1] = offset + 1;
@@ -63,35 +66,35 @@ namespace Tassathras
 		}
 		glGenBuffers(1, &m_quadIB);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_quadIB);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices.data(), GL_STATIC_DRAW);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices) * sizeof(uint32_t), indices.data(), GL_STATIC_DRAW);
 
 		//create shaders Here(ну да, он же маленький, похуй)
 		const char* vertexShaderSource = R"(
             #version 330 core
             
-            layout(location = 0) in vec3 a_Position;
-            layout(location = 1) in vec4 a_Color;
+            layout(location = 0) in vec3 a_position;
+            layout(location = 1) in vec4 a_color;
             
-            uniform mat4 u_ViewProjection;
+            uniform mat4 u_viewProjection;
             
             out vec4 v_Color;
             
             void main()
             {
-                v_Color = a_Color;
-                gl_Position = u_ViewProjection * vec4(a_Position, 1.0);
+                v_Color = a_color;
+                gl_Position = u_viewProjection * vec4(a_Position, 1.0);
             }
         )";
 
 		const char* fragmentShaderSource = R"(
             #version 330 core
             
-            in vec4 v_Color;
-            out vec4 FragColor;
+            in vec4 v_color;
+            out vec4 fragColor;
             
             void main()
             {
-                FragColor = v_Color;
+                FragColor = v_color;
             }
         )";
 

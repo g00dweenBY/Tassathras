@@ -37,13 +37,23 @@ namespace Tassathras
 			return;
 		}
 
+		glfwMakeContextCurrent(m_window);
+
+		if (!gladLoadGL())
+		{
+			std::cerr << "failed to init glad" << std::endl;
+			return;
+		}
+
+		std::cout << "openGL v: " << glGetString(GL_VERSION) << std::endl;
+		std::cout << "renderer: " << glGetString(GL_RENDERER) << std::endl;
+
 		//setting opengl
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glEnable(GL_DEPTH_TEST);
 
-		std::cout << "openGL v: " << glGetString(GL_VERSION) << std::endl;
-		std::cout << "renderer: " << glGetString(GL_RENDERER) << std::endl;
+
 		//init renderer
 		Renderer2D::init();
 	}
