@@ -11,6 +11,7 @@ namespace Tassathras
 		glm::vec3 m_position; // x, y, z ==
 		float m_zoom = 1.0f;
 		float m_rotation = 0.0f;
+		//float m_aspectRatio = 16.0f / 9.0f;
 
 		// matrix
 		glm::mat4 m_viewMatrix;
@@ -27,13 +28,14 @@ namespace Tassathras
 
 	public:
 		Camera(float viewportWidth, float viewportHeight);
-
+		Camera();
 		//== Control camera ==
 		void setPosition(const glm::vec2& position);
 		void move(const glm::vec2& delta);
 		void setZoom(float zoom);
 		void zoom(float delta);
 		void setRotation(float rotation);
+		//void setAspectRatio(float aspectRatio);
 
 		//== isometric transformations ==
 		glm::vec2 screenToWorld(const glm::vec2& screenPos) const;

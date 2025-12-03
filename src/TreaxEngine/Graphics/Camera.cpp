@@ -1,4 +1,4 @@
-#include "Camera2D.h"
+#include "Camera.h"
 
 namespace Tassathras
 {
@@ -12,6 +12,18 @@ namespace Tassathras
 		recalculateViewMatrix();
 		updateViewProjectionMatrix();
 	}
+	Camera::Camera()
+		: m_position(0.0f, 0.0f, 0.0f)
+		, m_zoom(1.0f)
+		, m_rotation(0.0f)
+		, m_viewportWidth(1280.0f)
+		, m_viewportHeight(720.0f)
+	{
+		recalculateViewMatrix();
+		recalculateProjectionMatrix();
+		updateViewProjectionMatrix();
+	}
+	
 
 	// ========= camera update =============
 	void Camera::recalculateProjectionMatrix()

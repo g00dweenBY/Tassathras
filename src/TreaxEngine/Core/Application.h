@@ -1,4 +1,5 @@
 #pragma once
+#include <glad/glad.h>
 #include<GLFW/glfw3.h>
 #include<memory>
 
@@ -8,7 +9,7 @@ namespace Tassathras
 	{
 	private:
 		void init();
-		void shotDown();
+		void shutDown();
 	private:
 		GLFWwindow* m_window = nullptr;
 		int m_width = 1280;
@@ -25,7 +26,6 @@ namespace Tassathras
 
 		virtual void onUpdate(float deltaTime) {}
 		virtual void onRender() {}
-		virtual void onImGuiRender() {}
 		virtual void onEvent() {}
 
 		GLFWwindow* getWindow() const { return m_window; };

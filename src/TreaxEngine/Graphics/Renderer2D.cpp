@@ -3,7 +3,7 @@
 #include <array>
 #include "Renderer2D.h"
 #include "Shader.h"
-#include "Camera2D.h"
+#include "Camera.h"
 
 namespace Tassathras
 {
@@ -43,11 +43,12 @@ namespace Tassathras
 		glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, color));
 
 		//4. Create index buffer
-		std::array<uint32_t, MAX_INDICES> indices;
-		uint32_t offset = 0;
+		std::vector<uint32_t> indices;
+		indices.reserve(MAX_INDICES);
 
 		for (uint32_t i = 0; i < MAX_INDICES; i += 6)
 		{
+			uint32_t offset = i * 4;
 			//first triangle
 			indices[i + 0] = offset + 0;
 			indices[i + 1] = offset + 1;
