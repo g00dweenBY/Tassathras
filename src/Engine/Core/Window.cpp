@@ -1,4 +1,5 @@
 #include "Window.h"
+#include "Input.h"
 #include <GLFW/glfw3.h>
 #include <iostream>
 
@@ -72,7 +73,7 @@ namespace Tassathras
 			}
 		}
 		m_window = glfwCreateWindow((int)props.m_width, (int)props.m_height, props.m_title.c_str(), nullptr, nullptr);
-
+		
 		if (!m_window)
 		{
 			std::cerr << "failder to creat glfw window" << std::endl;
@@ -90,18 +91,42 @@ namespace Tassathras
 			return;
 		}
 		//for callback's
-		glfwSetWindowUserPointer(m_window, m_data.get());
+		glfwSetWindowUserPointer(m_window, this);
 		glfwSetWindowSizeCallback(m_window, windowResizeCallback);
+
+		glfwSetKeyCallback(m_window, keyCallback);
+		glfwSetMouseButtonCallback(m_window, mouseButtonCallback);
+		glfwSetCursorPosCallback(m_window, cursorPosCallback);
 
 		std::cout << "opengl info:\n";
 		std::cout << "vendor: " << glGetString(GL_VENDOR) << std::endl;
 		std::cout << "version: " << glGetString(GL_VERSION) << std::endl;
 		std::cout << "renderer: " << glGetString(GL_RENDERER) << std::endl;
 	}
+	void Window::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
+	{
+		if (action == GLFW_PRESS)
+			Input::setKeyPressed(key, true);
+		else if (action == GLFW_RELEASE)
+			Input::setKeyPressed(key, false);
+	}
+	void Window::mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
+	{
+		if (action == GLFW_PRESS)
+			Input::setMouseButtonPressed(button, true);
+		else if (action == GLFW_RELEASE)
+			Input::setMouseButtonPressed(button, false);
+	}
+	void Window::cursorPosCallback(GLFWwindow* window, double xpos, double ypos)
+	{
+		Input::setMousePosition((float)xpos, (float)ypos);
+	}
+
 	void Window::shutdown()
 	{
 		glfwDestroyWindow(m_window);
 	}
+
 	void Window::onUpdate()
 	{
 		glfwSwapBuffers(m_window);

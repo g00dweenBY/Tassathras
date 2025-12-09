@@ -1,11 +1,15 @@
 #include "Application.h"
 #include "Graphics/Renderers/Renderer2D.h"
+#include "Input.h"
+
 #include<GLFW/glfw3.h>
 #include<glm/gtc/matrix_transform.hpp>
 
 
+
 namespace Tassathras
 {
+	
 	Application* Application::s_instance = nullptr;
 
 	Application::Application()
@@ -46,6 +50,21 @@ namespace Tassathras
 		while (!m_window->isClosed() && m_running)
 		{
 			m_window->onUpdate();
+
+;
+			if (Input::isMouseButtonPressed(GLFW_MOUSE_BUTTON_LEFT))
+			{
+				glm::vec2 pos = Input::getMousePosition();
+				std::cout << "left click at: " << pos.x << ", " << pos.y << std::endl;
+			}
+			if (Input::isKeyPressed(GLFW_KEY_W))
+				std::cout << "w pressed\n";
+			if (Input::isKeyPressed(GLFW_KEY_A))
+				std::cout << "A is pressed\n";
+			if (Input::isKeyPressed(GLFW_KEY_D))
+				std::cout << "D is pressed\n";
+			if (Input::isKeyPressed(GLFW_KEY_S))
+				std::cout << "S is pressed\n";
 			
 			Renderer2D::beginScene(projection);
 			Renderer2D::drawQuad({ 0.0f, 0.0f }, { 0.5f, 0.5f }, { 1.0f, 0.0f, 0.0f, 1.0f });
