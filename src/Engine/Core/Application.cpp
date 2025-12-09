@@ -1,5 +1,6 @@
 #include "Application.h"
-
+#include "Graphics/Buffers/VertexBuffer.h"
+#include "Graphics//Buffers/VertexArray.h"
 #include<GLFW/glfw3.h>
 #include<glm/gtc/matrix_transform.hpp>
 

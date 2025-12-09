@@ -1,7 +1,7 @@
 #pragma once
 #include "Window.h"
 #include "Graphics/Shader.h"
-#include "Graphics/VertexArray.h"
+#include "Graphics/Buffers/VertexArray.h"
 
 #include <memory>
 #include <iostream>
