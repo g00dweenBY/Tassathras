@@ -78,7 +78,7 @@ namespace Tassathras
 			int isCompiled = 0;
 			glGetShaderiv(shader, GL_COMPILE_STATUS, &isCompiled);
 
-			if (isCompiled = GL_FALSE)
+			if (isCompiled == GL_FALSE)
 			{
 				int maxLength = 0;
 				glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &maxLength);
@@ -135,5 +135,23 @@ namespace Tassathras
 
 		int location = glGetUniformLocation(m_rendererID, name.c_str());
 		if (location == 1) std::cout << "warning: uniform '" << name << "' not found in shader (" << m_name << ")\n";
+		m_uniformLocationCache[name] = location;
+		return location;
+	}
+	void Shader::setInt(const std::string& name, int value)
+	{
+		glUniform1i(getUniformLocation(name), value);
+	}
+	void Shader::setFloat(const std::string& name, float value)
+	{
+		glUniform1f(getUniformLocation(name), value);
+	}
+	void Shader::setFloat4(const std::string& name, float f0, float f1, float f2, float f3)
+	{
+		glUniform4f(getUniformLocation(name), f0, f1, f2, f3);
+	}
+	void Shader::setMat4(const std::string& name, const glm::mat4& matrix)
+	{
+		glUniformMatrix4fv(getUniformLocation(name), 1, GL_FALSE, glm::value_ptr(matrix));
 	}
 }

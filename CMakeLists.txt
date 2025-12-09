@@ -7,11 +7,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Engine sources
 file(GLOB_RECURSE ENGINE_SOURCES
-    src/TreaxEngine/*.cpp
-    src/TreaxEngine/**/*.cpp
-    src/TreaxEngine/Graphics/stb_image.cpp
+    src/Engine/*.cpp
+    src/Engine/**/*.cpp
+    src/Engine/Graphics/stb_image.cpp
 )
-add_library(TreaxEngine STATIC ${ENGINE_SOURCES})
+add_library(Engine STATIC ${ENGINE_SOURCES} "src/Engine/Graphics/VertexArray.h" "src/Engine/Graphics/VertexArray.cpp")
 
 # Game sources
 file(GLOB_RECURSE GAME_SOURCES
@@ -23,12 +23,12 @@ file(GLOB_RECURSE GAME_SOURCES
 add_subdirectory(external/glfw)
 
 # Glad
-add_library(glad STATIC external/glad/src/glad.c)
+add_library(glad STATIC external/glad/src/glad.c "src/Engine/Graphics/VertexArray.h" "src/Engine/Graphics/VertexArray.cpp")
 target_include_directories(glad PUBLIC external/glad/include)
 
 # Include dirs
-target_include_directories(TreaxEngine PUBLIC
-    src/TreaxEngine
+target_include_directories(Engine PUBLIC
+    src/Engine
     external/glad/include
     external/glfw/include
     external/glm
@@ -36,10 +36,10 @@ target_include_directories(TreaxEngine PUBLIC
 )
 
 # Executable
-add_executable(TreaxGame ${GAME_SOURCES})
+add_executable(TreaxGame ${GAME_SOURCES} "src/Engine/Graphics/VertexArray.h" "src/Engine/Graphics/VertexArray.cpp")
 
 # Link libraries
-target_link_libraries(TreaxGame PRIVATE TreaxEngine glfw glad opengl32)
+target_link_libraries(TreaxGame PRIVATE Engine glfw glad opengl32)
 
 # Copy assets
 set(ASSETS_SOURCE_DIR "${CMAKE_SOURCE_DIR}/assets")

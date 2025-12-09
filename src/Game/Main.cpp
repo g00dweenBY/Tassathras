@@ -5,7 +5,7 @@ int main()
 {
 	try
 	{
-		Application app;
+		Tassathras::Application app;
 		app.run();
 	}
 	catch (const std::exception& e)

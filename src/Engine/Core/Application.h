@@ -1,10 +1,17 @@
 #pragma once
 #include "Window.h"
+#include "Graphics/Shader.h"
+#include "Graphics/VertexArray.h"
+
 #include <memory>
+#include <iostream>
+#include <glm/glm.hpp>
 
 
 
-class Application
+namespace Tassathras
+{
+	class Application
 	{
 	public:
 		Application();
@@ -20,7 +27,7 @@ class Application
 		Application& operator=(const Application& other) = delete;
 
 		Application(Application&& other) noexcept = default;
-		Application& operator=(Application&& other) noexcept  = default;
+		Application& operator=(Application&& other) noexcept = default;
 
 
 	private:
@@ -29,6 +36,9 @@ class Application
 
 		std::unique_ptr<Tassathras::Window> m_window;
 		bool m_running = true;
-		
 		static Application* s_instance;
+
+		std::shared_ptr<Tassathras::Shader> m_shader;
+		std::shared_ptr<Tassathras::VertexArray> m_vertexArray;
 	};
+}
