@@ -1,4 +1,5 @@
 #include "Window.h"
+#include <GLFW/glfw3.h>
 #include <iostream>
 
 namespace Tassathras
@@ -39,6 +40,10 @@ namespace Tassathras
 	unsigned int Window::getWidth() const { return m_data->width; }
 	unsigned int Window::getHeight() const { return m_data->height; }
 
+	bool Window::isClosed() const
+	{
+		return glfwWindowShouldClose(m_window);
+	}
 	void Window::init(const WindowProps& props)
 	{
 		m_data->title = props.m_title;

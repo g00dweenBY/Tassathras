@@ -27,7 +27,7 @@ namespace Tassathras
 		~Window();
 
 		void onUpdate();
-
+		bool isClosed() const;
 		unsigned int getWidth() const;
 		unsigned int getHeight() const;
 		GLFWwindow* getNativeWindow() const { return m_window; }

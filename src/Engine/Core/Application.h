@@ -19,6 +19,7 @@ namespace Tassathras
 
 		void run();
 
+
 		static Application& get() { return *s_instance; }
 		Tassathras::Window& getWindow() { return *m_window; }
 
