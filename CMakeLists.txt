@@ -11,7 +11,7 @@ file(GLOB_RECURSE ENGINE_SOURCES
     src/Engine/**/*.cpp
     src/Engine/Graphics/stb_image.cpp
 )
-add_library(Engine STATIC ${ENGINE_SOURCES}   "src/Engine/Graphics/Buffers/VertexBuffer.cpp" "src/Engine/Graphics/Buffers/VertexBuffer.h" "src/Engine/Graphics/Buffers/IndexBuffer.cpp" "src/Engine/Graphics/Buffers/IndexBuffer.h" "src/Engine/Graphics/Buffers/VertexArray.cpp" "src/Engine/Graphics/Buffers/VertexArray.h" "src/Engine/Graphics/Buffers/VertexBufferLayout.cpp" "src/Engine/Graphics/Buffers/VertexBufferLayout.h")
+add_library(Engine STATIC ${ENGINE_SOURCES})   
 
 # Game sources
 file(GLOB_RECURSE GAME_SOURCES
@@ -23,7 +23,7 @@ file(GLOB_RECURSE GAME_SOURCES
 add_subdirectory(external/glfw)
 
 # Glad
-add_library(glad STATIC external/glad/src/glad.c   "src/Engine/Graphics/Buffers/VertexBuffer.cpp" "src/Engine/Graphics/Buffers/VertexBuffer.h" "src/Engine/Graphics/Buffers/IndexBuffer.cpp" "src/Engine/Graphics/Buffers/IndexBuffer.h" "src/Engine/Graphics/Buffers/VertexArray.cpp" "src/Engine/Graphics/Buffers/VertexArray.h" "src/Engine/Graphics/Buffers/VertexBufferLayout.cpp" "src/Engine/Graphics/Buffers/VertexBufferLayout.h")
+add_library(glad STATIC external/glad/src/glad.c)
 target_include_directories(glad PUBLIC external/glad/include)
 
 # Include dirs
@@ -33,6 +33,7 @@ target_include_directories(Engine PUBLIC
     external/glfw/include
     external/glm
     external/stb
+	external/entt
 )
 
 # Executable

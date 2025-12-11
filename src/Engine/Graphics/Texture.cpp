@@ -49,6 +49,7 @@ namespace Tassathras
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
 		uint32_t whiteColor = 0xffffffff;
+		unsigned char colorData[4] = { 255, 0, 0, 255 };
 
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_width, m_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &whiteColor);
 

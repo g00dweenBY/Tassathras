@@ -74,6 +74,8 @@ namespace Tassathras
 
 		m_data.flatColorShader->setFloat4("u_color", color.r, color.g, color.b, color.a);
 
+		m_data.whiteTexture->bind(0);
+
 		m_data.flatColorShader->setMat4("u_model", transform);
 
 		m_data.quadVAO->bind();

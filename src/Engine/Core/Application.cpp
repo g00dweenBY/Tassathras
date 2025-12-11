@@ -35,8 +35,11 @@ namespace Tassathras
 	void Application::init()
 	{
 		m_window = std::make_unique<Tassathras::Window>(Tassathras::WindowProps());
-
+		glClearColor(0.1f, 0.1f, 0.4f, 1.0f);
 		Renderer2D::init();
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 		m_texture = std::make_shared<Texture>("assets/textures/test.png");
 	}
 
@@ -68,8 +71,11 @@ namespace Tassathras
 			if (Input::isKeyPressed(GLFW_KEY_S))
 				std::cout << "S is pressed\n";
 			
+			glClear(GL_COLOR_BUFFER_BIT); // for clear color;
+
+
 			Renderer2D::beginScene(projection);
-			//Renderer2D::drawQuad({ 0.0f, 0.0f }, { 0.5f, 0.5f }, { 1.0f, 0.0f, 0.0f, 1.0f });
+			//Renderer2D::drawQuad({ -1.0f, 0.0f }, { 0.3f, 0.3f }, { 0.0f, 0.0f, 1.0f, 1.0f });
 			Renderer2D::drawQuad({ 0.0f, 0.0f }, { 0.5f, 0.5f }, m_texture);
 
 			Renderer2D::endScene();
