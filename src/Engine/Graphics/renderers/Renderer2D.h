@@ -35,6 +35,8 @@ namespace Tassathras
 			std::shared_ptr<Shader> flatColorShader;
 			glm::mat4 viewProjectionMatrix;
 
+			std::shared_ptr<Texture> whiteTexture;
+
 		};
 		static Renderer2DData m_data;
 

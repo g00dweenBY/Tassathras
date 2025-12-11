@@ -1,5 +1,6 @@
 #include "Renderer2D.h"
 #include "Graphics/Buffers/VertexBufferLayout.h"
+#include "Graphics/Texture.h"
 #include <glad/glad.h>
 #include <glm/gtc/matrix_transform.hpp>
 #include <iostream>
@@ -29,6 +30,8 @@ namespace Tassathras
 		m_data.quadVAO = std::make_shared<VertexArray>();
 
 		m_data.quadVBO = std::make_shared<VertexBuffer>(quadVertices, sizeof(quadVertices));
+
+		m_data.whiteTexture = std::make_shared<Texture>(1, 1);
 
 		VertexBufferLayout layout;
 		layout.push<float>(2); // a_position(x,y)

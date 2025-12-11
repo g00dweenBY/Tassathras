@@ -35,6 +35,26 @@ namespace Tassathras
 		else
 			std::cerr << "failed to load texture: " << path << std::endl;
 	}
+
+	Texture::Texture(uint32_t width, uint32_t height)
+		: m_rendererID(0), m_filePath(""), m_localBuffer(nullptr),
+		  m_width(width), m_height(height), m_BPP(4)
+	{
+		glGenTextures(1, &m_rendererID);
+		glBindTexture(GL_TEXTURE_2D, m_rendererID);
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+		uint32_t whiteColor = 0xffffffff;
+
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_width, m_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &whiteColor);
+
+		glBindTexture(GL_TEXTURE_2D, 0);
+	}
+
 	Texture::~Texture()
 	{
 		glDeleteTextures(1, &m_rendererID);
