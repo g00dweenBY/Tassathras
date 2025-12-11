@@ -2,6 +2,7 @@
 #include "Window.h"
 #include "Graphics/Shader.h"
 #include "Graphics/Buffers/VertexArray.h"
+#include "Graphics/Texture.h"
 
 #include <memory>
 #include <iostream>
@@ -41,5 +42,6 @@ namespace Tassathras
 
 		std::shared_ptr<Tassathras::Shader> m_shader;
 		std::shared_ptr<Tassathras::VertexArray> m_vertexArray;
+		std::shared_ptr<Tassathras::Texture> m_texture;
 	};
 }

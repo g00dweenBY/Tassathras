@@ -12,12 +12,13 @@ namespace Tassathras
 	{
 		std::cout << "renderer2d: init...\n";
 
-		float quadVertices[4 * 2] =
+		float quadVertices[] =
 		{
-			-0.5f, -0.5f,
-			 0.5f, -0.5f,
-			 0.5f,  0.5f,
-			-0.5f,  0.5f
+			//pos			//texture coord
+			-0.5f, -0.5f,	0.0f, 0.0f,
+			 0.5f, -0.5f,	1.0f, 0.0f,
+			 0.5f,  0.5f,	1.0f, 1.0f, 
+			-0.5f,  0.5f,	0.0f, 1.0f
 		};
 		unsigned int quadIndices[6]
 		{
@@ -30,7 +31,8 @@ namespace Tassathras
 		m_data.quadVBO = std::make_shared<VertexBuffer>(quadVertices, sizeof(quadVertices));
 
 		VertexBufferLayout layout;
-		layout.push<float>(2);
+		layout.push<float>(2); // a_position(x,y)
+		layout.push<float>(2); // a_texcoord(u,v) 
 		m_data.quadVBO->setLayout(layout);
 
 		m_data.quadVAO->addVertexBuffer(m_data.quadVBO);
@@ -39,6 +41,8 @@ namespace Tassathras
 		m_data.quadVAO->setIndexBuffer(quadIBO);
 
 		m_data.flatColorShader = std::make_shared<Shader>("assets/shaders/Base.glsl");
+
+		m_data.flatColorShader->setInt("u_texture", 0);
 	}
 
 	void Renderer2D::shutdown()
@@ -68,6 +72,23 @@ namespace Tassathras
 		m_data.flatColorShader->setFloat4("u_color", color.r, color.g, color.b, color.a);
 
 		m_data.flatColorShader->setMat4("u_model", transform);
+
+		m_data.quadVAO->bind();
+		glDrawElements(GL_TRIANGLES, m_data.quadVAO->getIndexBuffer()->getCount(), GL_UNSIGNED_INT, nullptr);
+	}
+
+	void Renderer2D::drawQuad(const glm::vec2& pos, const glm::vec2& size, const std::shared_ptr<Texture>& texture)
+	{
+		glm::mat4 transfrom = glm::mat4(1.0f);
+		transfrom = glm::translate(transfrom, glm::vec3(pos.x, pos.y, 0.0f));
+		transfrom = glm::scale(transfrom, glm::vec3(size.x, size.y, 1.0f));
+
+		m_data.flatColorShader->bind();
+
+		m_data.flatColorShader->setMat4("u_model", transfrom);
+		m_data.flatColorShader->setFloat4("u_color", 1.0f, 1.0f, 1.0f, 1.0f);
+
+		texture->bind();
 
 		m_data.quadVAO->bind();
 		glDrawElements(GL_TRIANGLES, m_data.quadVAO->getIndexBuffer()->getCount(), GL_UNSIGNED_INT, nullptr);

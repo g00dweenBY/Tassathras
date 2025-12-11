@@ -1,6 +1,7 @@
 #include "Application.h"
 #include "Graphics/Renderers/Renderer2D.h"
 #include "Input.h"
+#include "Graphics/Texture.h"
 
 #include<GLFW/glfw3.h>
 #include<glm/gtc/matrix_transform.hpp>
@@ -36,6 +37,7 @@ namespace Tassathras
 		m_window = std::make_unique<Tassathras::Window>(Tassathras::WindowProps());
 
 		Renderer2D::init();
+		m_texture = std::make_shared<Texture>("assets/textures/test.png");
 	}
 
 	void Application::shutdown()
@@ -67,8 +69,8 @@ namespace Tassathras
 				std::cout << "S is pressed\n";
 			
 			Renderer2D::beginScene(projection);
-			Renderer2D::drawQuad({ 0.0f, 0.0f }, { 0.5f, 0.5f }, { 1.0f, 0.0f, 0.0f, 1.0f });
-			Renderer2D::drawQuad({ 0.5f, 0.5f }, { 0.3f, 0.3f }, { 0.0f, 0.0f, 1.0f, 1.0f });
+			//Renderer2D::drawQuad({ 0.0f, 0.0f }, { 0.5f, 0.5f }, { 1.0f, 0.0f, 0.0f, 1.0f });
+			Renderer2D::drawQuad({ 0.0f, 0.0f }, { 0.5f, 0.5f }, m_texture);
 
 			Renderer2D::endScene();
 		}

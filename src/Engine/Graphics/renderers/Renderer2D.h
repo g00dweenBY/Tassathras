@@ -4,6 +4,7 @@
 #include "Graphics/Buffers/VertexArray.h"
 #include "Graphics/Buffers/VertexBuffer.h"
 #include "Graphics/Buffers/IndexBuffer.h"
+#include "Graphics/Texture.h"
 
 #include <glm/glm.hpp>
 #include <memory>
@@ -22,7 +23,9 @@ namespace Tassathras
 
 		static void endScene();
 
-		static void drawQuad(const glm::vec2& pos, const glm::vec2& size, const glm::vec4& color);
+		static void drawQuad(const glm::vec2& pos, const glm::vec2& size, const glm::vec4& color); //color
+		static void drawQuad(const glm::vec2& pos, const glm::vec2& size, const std::shared_ptr<Texture>& texture); //texture
+
 
 	private:
 		struct Renderer2DData
