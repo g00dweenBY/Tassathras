@@ -35,7 +35,7 @@ namespace Tassathras
 	void Application::init()
 	{
 		m_window = std::make_unique<Tassathras::Window>(Tassathras::WindowProps());
-		glClearColor(0.1f, 0.1f, 0.4f, 1.0f);
+		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 		Renderer2D::init();
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
