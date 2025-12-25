@@ -4,11 +4,14 @@
 /build/
 /dist/
 /out/
-/*.log
-/*.ini
+
 /*.dll
 /*.exe
 /*.lib
 /*.so
+
+
+
+
 /CMakePresets.json
 /CMakeUserPresets.json
