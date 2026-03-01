@@ -10,7 +10,7 @@
 /*.lib
 /*.so
 
-
+check-size.sh
 
 
 /CMakePresets.json
