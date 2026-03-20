@@ -27,7 +27,7 @@ void Game::onStart()
     Tassathras::Renderer2D::init();
     m_state = GameState::MainMenu;
 
-    TS_CORE_INFO("Нажмите [1-5] для создания холста нужного размера.");
+    TS_CORE_INFO("Press [1-5].");
 }
 
 void Game::initMap(int size)
@@ -211,7 +211,7 @@ void Game::renderCanvasBorder()
     glm::vec2 p2 = m_camera->worldToScreen((float)m_mapWidth, (float)m_mapHeight, 0.1f);
     glm::vec2 p3 = m_camera->worldToScreen(0.0f, (float)m_mapHeight, 0.1f);
 
-    glm::vec4 color = { 0.0f, 0.0f, 0.0f, 0.1f }; // Ярко-голубая граница
+    glm::vec4 color = { 0.0f, 0.0f, 0.0f, 0.1f }; 
     Tassathras::Renderer2D::drawLine(p0, p1, color);
     Tassathras::Renderer2D::drawLine(p1, p2, color);
     Tassathras::Renderer2D::drawLine(p2, p3, color);
@@ -220,8 +220,7 @@ void Game::renderCanvasBorder()
 
 void Game::renderDebugGrid()
 {
-    // Рисуем сетку только внутри границ нашего m_mapWidth / m_mapHeight
-    glm::vec4 gridColor = { 0.3f, 0.4f, 0.5f, 1.0f };
+    glm::vec4 gridColor = { 0.1f, 0.1f, 0.1f, 1.0f };
 
     for (int x = 0; x <= m_mapWidth; x++) {
         glm::vec2 start = m_camera->worldToScreen((float)x, 0.0f, 0.05f);

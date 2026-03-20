@@ -135,7 +135,7 @@ namespace Tassathras {
         float textureIndex = 0.0f;
         for (uint32_t i = 0; i < s_Data.textureSlotIndex; i++) {
             if (*s_Data.textureSlots[i] == *texture) {
-                textureIndex = (float)i;
+                textureIndex = i;
                 break;
             }
         }
